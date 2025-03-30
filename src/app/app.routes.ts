@@ -22,8 +22,12 @@ export const routes: Routes = [
     {path: "inscribirse", component: InscribirseComponent,
         ...canActivate(() => redirectUnauthorizedTo(["login"])), canDeactivate: [warningGuard]
     },
-    {path: "mis-inscripciones", component: MisCursosComponent},
-    { path: 'inscribirse/:id', component: InscribirseComponent },
+    {path: "mis-inscripciones", component: MisCursosComponent,
+        ...canActivate(() => redirectUnauthorizedTo(["login"]))
+    },
+    { path: 'inscribirse/:id', component: InscribirseComponent,
+        ...canActivate(() => redirectUnauthorizedTo(["login"]))
+    },
     {path:'', redirectTo:'home', pathMatch: 'full'},
     {path:'**', component: NotFoundComponent}
 ];

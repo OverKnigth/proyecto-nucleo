@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -10,16 +10,18 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class NavBarComponent {
 
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService, private router: Router){}
 
   getCurrentUser(){
     return this.authService.getCurrentUser();
   }
 
-  logout(){
-    this.authService.logout()
-    .then(() => {console.log("Logout Exitoso");})
-    .catch((err => console.log(err)));
+  logout() {
+    this.authService.logout().then(() => {
+      this.router.navigate(['/home']);
+    }).catch(error => {
+      console.error('Error al cerrar sesión: ', error);
+    });
   }
 
 }
