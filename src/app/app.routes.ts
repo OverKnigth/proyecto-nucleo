@@ -9,6 +9,7 @@ import { InscribirseComponent } from './pages/inscribirse/inscribirse.component'
 import { MisCursosComponent } from './pages/mis-cursos/mis-cursos.component';
 import { VideosComponent } from './pages/videos/videos.component';
 import { authGuard } from './guards/auth/auth.guard';
+import { warningGuard } from './guards/warnigs/warning.guard';
 
 export const routes: Routes = [
     {path:'home', component: HomeComponent},
@@ -18,7 +19,9 @@ export const routes: Routes = [
     {path: "videos", component: VideosComponent,
         ...canActivate(() => redirectUnauthorizedTo(["login"]))
     },
-    {path: "inscribirse", component: InscribirseComponent},
+    {path: "inscribirse", component: InscribirseComponent,
+        ...canActivate(() => redirectUnauthorizedTo(["login"])), canDeactivate: [warningGuard]
+    },
     {path: "mis-inscripciones", component: MisCursosComponent},
     { path: 'inscribirse/:id', component: InscribirseComponent },
     {path:'', redirectTo:'home', pathMatch: 'full'},
