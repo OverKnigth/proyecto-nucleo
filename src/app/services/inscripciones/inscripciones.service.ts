@@ -22,7 +22,6 @@ export class InscripcionesService {
   }
 
   getInscripciones(): Observable<Inscripcion[]>{
-    //return this.http.get<Product[]>(this.url);
     const inscripcionesRef = collection(this.fireStore, "inscripciones");
     return collectionData(inscripcionesRef) as Observable<Inscripcion[]>
   }
@@ -35,13 +34,13 @@ export class InscripcionesService {
   
 
   deleteInscripcion(id: string) {
-    const inscripcionRef = doc(this.fireStore, 'inscripciones', id);  // Referencia al documento de la inscripción
-    return deleteDoc(inscripcionRef)  // Eliminar el documento por su ID
+    const inscripcionRef = doc(this.fireStore, 'inscripciones', id);  
+    return deleteDoc(inscripcionRef)  
       .then(() => {
         console.log('Inscripción eliminada con ID:', id);
       })
       .catch((error) => {
-        console.error('Error al eliminar la inscripción:', error);  // Verificar errores
+        console.error('Error al eliminar la inscripción:', error); 
       });
   }
   
@@ -51,7 +50,7 @@ export class InscripcionesService {
   }
   
   
-    // Actualizar una inscripción
+
     updateInscripcion(id: string, updatedInscripcion: Inscripcion) {
       const inscripcionRef = doc(this.fireStore, 'inscripciones', id);
       return updateDoc(inscripcionRef, updatedInscripcion)

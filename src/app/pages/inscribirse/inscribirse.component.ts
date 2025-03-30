@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class InscribirseComponent {
   inscripcionForm: FormGroup;
-  inscripcionId: string | null = null; // Para detectar si es edición
+  inscripcionId: string | null = null; 
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,7 +33,7 @@ export class InscribirseComponent {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.inscripcionId = params.get('id'); // Obtener el ID de la URL
+      this.inscripcionId = params.get('id'); 
       if (this.inscripcionId) {
         this.cargarInscripcion(this.inscripcionId);
       }
@@ -53,13 +53,11 @@ export class InscribirseComponent {
       const inscripcion: Inscripcion = this.inscripcionForm.value;
       
       if (this.inscripcionId) {
-        // Si hay un ID, actualizamos
         this.inscripcionesService.updateInscripcion(this.inscripcionId, inscripcion).then(() => {
           console.log('Inscripción actualizada');
           this.router.navigate(['/mis-inscripciones']);
         });
       } else {
-        // Si no hay ID, creamos una nueva inscripción
         this.inscripcionesService.addInscripcion(inscripcion).then(() => {
           console.log('Inscripción guardada');
           this.router.navigate(['/mis-inscripciones']);

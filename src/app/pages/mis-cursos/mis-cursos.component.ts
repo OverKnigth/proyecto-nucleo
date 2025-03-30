@@ -45,14 +45,13 @@ export class MisCursosComponent {
   eliminarInscripcion(id: string) {
     if (confirm('¿Estás seguro de que quieres eliminar esta inscripción?')) {
       this.inscripcionesService.deleteInscripcion(id).then(() => {
-        this.getInscripciones(); // Actualizar la lista de inscripciones
+        this.getInscripciones(); 
       });
     }
   }
 
   editarInscripcion(id: string, updatedInscripcion: Inscripcion) {
     this.inscripcionesService.updateInscripcion(id, updatedInscripcion).then(() => {
-      // Actualizar la lista de inscripciones después de editar
       this.getInscripciones();
     });
   }

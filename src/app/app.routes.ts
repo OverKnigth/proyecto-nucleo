@@ -20,7 +20,7 @@ export const routes: Routes = [
     },
     {path: "inscribirse", component: InscribirseComponent},
     {path: "mis-inscripciones", component: MisCursosComponent},
-    { path: 'inscribirse/:id', component: InscribirseComponent },// Para edición
+    { path: 'inscribirse/:id', component: InscribirseComponent },
     {path:'', redirectTo:'home', pathMatch: 'full'},
     {path:'**', component: NotFoundComponent}
 ];
