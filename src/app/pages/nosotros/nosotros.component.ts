@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Inscripcion } from '../../types/inscripciones';
 
 @Component({
   selector: 'app-nosotros',
@@ -7,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './nosotros.component.css'
 })
 export class NosotrosComponent {
+  inscripcion: Inscripcion | undefined;
 
 }

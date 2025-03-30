@@ -1,30 +1,86 @@
 <div class="container text-center">
   <br />
-  <h1>Ingresa Dentro de Nuestra Comunidad</h1>
+  <h1>Ingresa Dentro de Nuestra Comunidad y disfruta del contenido de OverLearn</h1>
   <br />
   <div class="card gap-3 mx-auto p-4" style="width: 50rem">
     <img
       src="https://cdn-icons-png.flaticon.com/128/310/310869.png"
       alt="login"
-      style="height: 50px; width: 50px; margin-bottom: 10px; align-self: center;"
+      style="height: 50px; width: 50px; margin-bottom: 10px; align-self: center"
     />
     <h3>¡Inicia Sesion!</h3>
-    <p>Si ya tienes una cuenta puedes ingresar tus credenciales e iniciar sesion.</p>
-    <form>
+    <p>
+      Si ya tienes una cuenta puedes ingresar tus credenciales e iniciar sesion.
+    </p>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div class="mb-3">
         <label for="email" class="form-label">Email:</label>
         <input
+          formControlName="email"
           type="email"
           class="form-control"
           id="email"
           aria-describedby="emailHelp"
         />
       </div>
+      @if ((email?.hasError('required') || email?.hasError('email')) && email?.touched) {
+        <div>
+          <p class="text-danger">El email ingresado es incorrecto</p>
+        </div>
+      }
       <div class="mb-3">
         <label for="password" class="form-label">Contraseña:</label>
-        <input type="password" class="form-control" id="password" />
+        <input formControlName="password" type="password" class="form-control" id="password" />
       </div>
-      <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
+      @if (password?.hasError('required') && password?.touched) {
+        <div>
+          <p class="text-danger">La contraseña ingresada es incorrecta</p>
+        </div>
+      }
+      @if ((password?.hasError('required') || password?.hasError('minlength')) && password?.touched) {
+        <div>
+          <p class="text-danger">La contraseña debe tener al menos 6 caracteres</p>
+        </div>
+      }
+
+      @if (showRegister) {
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label">Confirmar Contraseña:</label>
+          <input formControlName="confirmPassword" type="password" class="form-control" id="confirmPassword" />
+        </div>
+        @if (confirmPassword?.hasError("confirmPassword") && confirmPassword?.touched) {
+          <div>
+            <p class="text-danger">Las contraseñas no coinciden</p>
+          </div>
+        }
+      }
+
+      <button type="submit" class="btn btn-primary" style="width: 30%;">
+        @if (showRegister) {
+          Registrarse
+        } @else {
+          Iniciar Sesion
+        }
+      </button>
+      <br />
+      <br />
+      <button type="button" class="btn btn-success" style="width: 30%;" (click)="loginGoogle()">
+        Iniciar Sesion Con Google
+      </button>
+      <br><br>
+      <span>
+        @if (showRegister) {
+          ¿Ya tienes una cuenta? 
+          <a (click)="toggleRegister()" class="link-primary" style="cursor: pointer;">
+            Inicia Sesion
+          </a>
+        } @else {
+          ¿No tienes una cuenta? 
+          <a (click)="toggleRegister()" class="link-primary" style="cursor: pointer;">
+            Registrate
+          </a>
+        }
+      </span>
     </form>
   </div>
 </div>

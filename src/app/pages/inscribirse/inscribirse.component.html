@@ -1,0 +1,96 @@
+<div class="container-fluid text-center">
+  <br />
+  <h1>Inscribete al curso de tu preferencia</h1>
+  <h5>"Descubre, aprende y supera tus límites cada día."</h5>
+  <br />
+  <div class="card mx-auto p-4" style="width: 50rem">
+    <img
+      src="https://cdn-icons-png.flaticon.com/128/5446/5446301.png"
+      alt="inscripcion"
+      class="mx-auto"
+      style="height: 60px; width: 60px"
+    />
+    <br />
+    <h4>Formulario de Inscripcion</h4>
+    <br />
+    <form [formGroup]="inscripcionForm" (ngSubmit)="guardarInscripcion()">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre Completo:</label>
+        <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre y apellido"/>
+      </div>
+      <div class="mb-3">
+        <label for="correo" class="form-label">Correo:</label>
+        <input formControlName="correo" type="email" class="form-control" id="correo" placeholder="Ingresa tu correo, asegurate que sea el mismo con el que iniciaste sesion" />
+      </div>
+      <div class="mb-3">
+        <label for="telefono" class="form-label">Telefono:</label>
+        <input formControlName="telefono" type="text" class="form-control" id="telefono" placeholder="Ingresa tu numero de telefono"/>
+      </div>
+      <div class="mb-3">
+        <label for="cursoSeleccionado" class="form-label"
+          >Curso Seleccionado:</label
+        >
+        <select formControlName="curso" class="form-control" id="cursoSeleccionado">
+          <option value="" disabled selected>Selecciona un curso</option>
+          <option value="Desarrollo Web con HTML, CSS y JavaScript">
+            Desarrollo Web con HTML, CSS y JavaScript
+          </option>
+          <option value="Introducción a la Inteligencia Artificial">
+            Introducción a la Inteligencia Artificial
+          </option>
+          <option value="Marketing Digital para Principiantes">
+            Marketing Digital para Principiantes
+          </option>
+          <option value="Diseño Gráfico con Adobe Photoshop">
+            Diseño Gráfico con Adobe Photoshop
+          </option>
+          <option value="Programación en Python para Principiantes">
+            Programación en Python para Principiantes
+          </option>
+          <option value="Desarrollo de Aplicaciones Móviles con Flutter">
+            Desarrollo de Aplicaciones Móviles con Flutter
+          </option>
+          <option value="Introducción a la Ciberseguridad">
+            Introducción a la Ciberseguridad
+          </option>
+          <option value="Fundamentos de Anatomía Humana">
+            Fundamentos de Anatomía Humana
+          </option>
+          <option value="Primeros Auxilios y Reanimación Cardiopulmonar (RCP)">
+            Primeros Auxilios y Reanimación Cardiopulmonar (RCP)
+          </option>
+          <option value="Nutrición y Dietética para la Salud">
+            Nutrición y Dietética para la Salud
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="nivelConocimiento" class="form-label"
+          >Nivel de Conocimiento Previo:</label
+        >
+        <select formControlName="nivelConocimiento" class="form-control" id="nivelConocimiento">
+          <option value="" disabled selected>Selecciona un nivel</option>
+          <option value="Principiante">Principiante</option>
+          <option value="Intermedio">Intermedio</option>
+          <option value="Avanzado">Avanzado</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="horario" class="form-label">Preferencia de Horario:</label>
+        <select formControlName="horario" class="form-control" id="horario">
+          <option value="" disabled selected>Selecciona un horario</option>
+          <option value="Mañana">Mañana</option>
+          <option value="Tarde">Tarde</option>
+          <option value="Noche">Noche</option>
+        </select>
+      </div>      
+      <div class="mb-3">
+        <label for="motivo" class="form-label">Motivo de inscripcion:</label>
+        <textarea formControlName="motivo" id="motivo" class="form-control" rows="3" placeholder="Ingresa tu motivo de inscripcion"></textarea>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary" style="width: 30%;">Inscribirse</button>
+    </form>
+  </div>
+</div>
