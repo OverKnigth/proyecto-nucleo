@@ -14,14 +14,13 @@ export const routes: Routes = [
     {path:'home', component: HomeComponent},
     {path:'nosotros', component: NosotrosComponent},
     {path:"login", component: LoginComponent},
-    {path: "oferta-academica", component: OfertaAcademicaComponent,
-       // ...canActivate(() => redirectUnauthorizedTo(["login"]))
-    },
+    {path: "oferta-academica", component: OfertaAcademicaComponent,},
     {path: "videos", component: VideosComponent,
         ...canActivate(() => redirectUnauthorizedTo(["login"]))
     },
     {path: "inscribirse", component: InscribirseComponent},
     {path: "mis-inscripciones", component: MisCursosComponent},
+    { path: 'inscribirse/:id', component: InscribirseComponent },// Para edición
     {path:'', redirectTo:'home', pathMatch: 'full'},
     {path:'**', component: NotFoundComponent}
 ];

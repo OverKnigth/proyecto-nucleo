@@ -45,5 +45,22 @@ export class InscripcionesService {
       });
   }
   
+  getInscripcionById(id: string): Observable<Inscripcion | undefined> {
+    const inscripcionRef = doc(this.fireStore, 'inscripciones', id);
+    return docData(inscripcionRef, { idField: 'id' }) as Observable<Inscripcion | undefined>;
+  }
+  
+  
+    // Actualizar una inscripción
+    updateInscripcion(id: string, updatedInscripcion: Inscripcion) {
+      const inscripcionRef = doc(this.fireStore, 'inscripciones', id);
+      return updateDoc(inscripcionRef, updatedInscripcion)
+        .then(() => {
+          console.log('Inscripción actualizada con ID:', id);
+        })
+        .catch((error) => {
+          console.error('Error al actualizar la inscripción:', error);
+        });
+    }
   
 }

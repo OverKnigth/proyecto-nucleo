@@ -13,9 +13,11 @@
                 <p class="card-text"><strong>Teléfono:</strong> {{inscripcion.telefono}}</p>
                 <p class="card-text"><strong>Horario:</strong> {{inscripcion.horario}}</p>
                 <p class="card-text"><strong>Motivo:</strong> {{inscripcion.motivo}}</p>
-                <div class="d-flex justify-content-between align-items-center">    
-                    <button (click)="eliminarInscripcion(inscripcion.id)" class="btn btn-danger btn-sm">Eliminar</button>  <!-- Botón para eliminar inscripción -->  
-                  </div>
+                <div class="container-fluid mx-auto gap-3 d-flex justify-content-center align-items-center">    
+                    <button (click)="eliminarInscripcion(inscripcion.id)" class="btn btn-danger">Eliminar</button>  <!-- Botón para eliminar inscripción -->  
+                    <button class="btn btn-warning" (click)="goToInscripcion(inscripcion.id)">Editar</button>
+
+                </div>
             </div>
         </div>
         }

@@ -21,7 +21,6 @@ export class MisCursosComponent {
   ) {}
 
   ngOnInit() {
-    // Obtener el correo del usuario autenticado de forma directa
     const user = this.authService.getCurrentUser();
     if (user) {
       this.correoUsuario = user.email!;
@@ -33,27 +32,28 @@ export class MisCursosComponent {
 
   getInscripciones() {
     if (this.correoUsuario) {
-      // Filtrar las inscripciones por correo
       this.inscripcionesService.getInscripcionesByCorreo(this.correoUsuario).subscribe((inscripciones) => {
-        this.inscripciones = inscripciones;  // Asignar las inscripciones obtenidas
+        this.inscripciones = inscripciones;
       });
     }
   }
 
   goToInscripcion(id: string) {
-    this.router.navigate(['/inscripcion-form', id]);
+    this.router.navigate(['/inscribirse', id]);
   }
 
   eliminarInscripcion(id: string) {
-    console.log('Eliminando inscripción con ID:', id);  // Verificar el ID
     if (confirm('¿Estás seguro de que quieres eliminar esta inscripción?')) {
       this.inscripcionesService.deleteInscripcion(id).then(() => {
-        // Actualizar la lista de inscripciones después de eliminar
-        this.getInscripciones();
-      }).catch((error) => {
-        console.error('Error al eliminar la inscripción:', error);  // Verificar errores
+        this.getInscripciones(); // Actualizar la lista de inscripciones
       });
     }
   }
-  
+
+  editarInscripcion(id: string, updatedInscripcion: Inscripcion) {
+    this.inscripcionesService.updateInscripcion(id, updatedInscripcion).then(() => {
+      // Actualizar la lista de inscripciones después de editar
+      this.getInscripciones();
+    });
+  }
 }

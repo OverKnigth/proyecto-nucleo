@@ -18,14 +18,29 @@
         <label for="nombre" class="form-label">Nombre Completo:</label>
         <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre y apellido"/>
       </div>
+      @if (nombre?.hasError('required') && nombre?.touched) {
+        <div>
+          <p class="text-danger">El nombre es requerido</p>
+        </div>
+      }
       <div class="mb-3">
         <label for="correo" class="form-label">Correo:</label>
         <input formControlName="correo" type="email" class="form-control" id="correo" placeholder="Ingresa tu correo, asegurate que sea el mismo con el que iniciaste sesion" />
       </div>
+      @if ((correo?.hasError('required') || correo?.hasError('email')) && correo?.touched) {
+        <div>
+          <p class="text-danger">El email ingresado es incorrecto</p>
+        </div>
+      }
       <div class="mb-3">
         <label for="telefono" class="form-label">Telefono:</label>
         <input formControlName="telefono" type="text" class="form-control" id="telefono" placeholder="Ingresa tu numero de telefono"/>
       </div>
+      @if (telefono?.hasError('required') && telefono?.touched) {
+        <div>
+          <p class="text-danger">El telefono es requerido</p>
+        </div>
+      }
       <div class="mb-3">
         <label for="cursoSeleccionado" class="form-label"
           >Curso Seleccionado:</label
@@ -64,6 +79,11 @@
           </option>
         </select>
       </div>
+      @if (curso?.hasError('required') && curso?.touched) {
+        <div>
+          <p class="text-danger">El curso es requerido</p>
+        </div>
+      }
 
       <div class="mb-3">
         <label for="nivelConocimiento" class="form-label"
@@ -76,6 +96,11 @@
           <option value="Avanzado">Avanzado</option>
         </select>
       </div>
+      @if (nivelConocimiento?.hasError('required') && nivelConocimiento?.touched) {
+        <div>
+          <p class="text-danger">El nivel de conocimiento es requerido</p>
+        </div>
+      }
       <div class="mb-3">
         <label for="horario" class="form-label">Preferencia de Horario:</label>
         <select formControlName="horario" class="form-control" id="horario">
@@ -85,12 +110,24 @@
           <option value="Noche">Noche</option>
         </select>
       </div>      
+      @if (horario?.hasError('required') && horario?.touched) {
+        <div>
+          <p class="text-danger">El horario es requerido</p>
+        </div>
+      }
       <div class="mb-3">
         <label for="motivo" class="form-label">Motivo de inscripcion:</label>
         <textarea formControlName="motivo" id="motivo" class="form-control" rows="3" placeholder="Ingresa tu motivo de inscripcion"></textarea>
       </div>
+      @if (motivo?.hasError('required') && motivo?.touched) {
+        <div>
+          <p class="text-danger">El motivo es requerido</p>
+        </div>
+      }
       <br>
-      <button type="submit" class="btn btn-primary" style="width: 30%;">Inscribirse</button>
+      <button type="submit" class="btn btn-primary" style="width: 30%;">
+        {{ inscripcionId ? 'Actualizar' : 'Inscribirse' }}
+      </button>      
     </form>
   </div>
 </div>
